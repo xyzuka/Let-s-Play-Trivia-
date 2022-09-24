@@ -1,14 +1,17 @@
 import React from 'react'
 import '../styles/menu.css'
 
-export default function Menu() {
+export default function Menu(props) {
   return (
     <div
       className='background'
     >
-      <h2 className='menu-heading'>Let's Play Trivia!</h2>
-      <p className='menu-text'>Select a topic you would like to be quizzed on</p>
-      <button className='menu-button'>Start Quiz!</button>
+      <h1 className='menu-heading'>Let's Play Trivia!</h1>
+      <p className='menu-text'>Test your knowledge on all types of topics</p>
+      <button 
+        className='menu-button'
+        onClick={props.showMenu}
+      >General Knowledge</button>
       <span className='blob-1'></span>
       <span className='blob-2'></span>
     </div>
