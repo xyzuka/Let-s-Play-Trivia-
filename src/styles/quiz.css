@@ -132,6 +132,8 @@
 
 .answer-button:hover{
   scale: 1.05;
+  font-weight: bold;
+  background-color: #98a0c6;
   box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
 }
 
