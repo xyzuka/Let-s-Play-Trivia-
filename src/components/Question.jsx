@@ -1,21 +1,29 @@
 import React from 'react'
 import '../styles/quiz.css'
+import { nanoid } from 'nanoid'
 
 export default function Question(props) {
-  const answers = props.answers
+  const answers = [];
+
+  for (let i = 0; i < props.answers.length; i++) {
+    answers.push({
+      answers: props.answers[i],
+      id: props.answers.indexOf(props.answers[i])
+    })
+  }
 
   let shuffledAnswers = answers
       .map(value => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value)
 
-  const shuffleAnswersRendered = shuffledAnswers.map((answer) => {
+  const shuffleAnswersRendered = shuffledAnswers.map((item) => {
     return <button 
     className='answer-button' 
-    // enter key
-    id={answer.id}
+    key={item.id}
+    id={item.id}
     >
-      {answer}
+      {item.answers}
     </button>
   })
 
