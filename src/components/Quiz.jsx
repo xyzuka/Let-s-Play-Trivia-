@@ -1,7 +1,6 @@
 import React from 'react'
 import '../styles/quiz.css'
 import Question from './Question'
-import { nanoid } from 'nanoid'
 
 export default function Quiz() {
   const [allQuestions, setAllQuestions] = React.useState([])
@@ -15,10 +14,6 @@ export default function Quiz() {
       })
   }, [])
 
-  function checkAnswer()  {
-    console.log('answer clicked!')
-  }
-
   const renderedQuestions = allQuestions.map((question) => {
     return (
       <Question 
@@ -28,13 +23,9 @@ export default function Quiz() {
         question={question.question}
         id={question.id}
         key={question.id}
-        selectQuestion={() => checkAnswer()}
       />
     ) 
   })
-
-  // need to create a question component
-  // map through the allQuestions state to render each individual question
 
   return (
     <div
