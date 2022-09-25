@@ -9,17 +9,21 @@ export default function Quiz() {
     fetch("https://the-trivia-api.com/api/questions")
       .then(res => res.json())
       .then(data => {
-        const firstFiveQuestions = data.slice(0, 1)
+        const firstFiveQuestions = data.slice(0, 2)
         setAllQuestions(firstFiveQuestions)
       })
   }, [])
+
+
+    console.log(allQuestions)
+
+  // take each answer from allQuestions to render a button individually
 
   const renderedQuestions = allQuestions.map((question) => {
     return (
       <Question 
         answers={[question.correctAnswer, ...question.incorrectAnswers]}
         correctAnswer={question.correctAnswer}
-        incorrectAnswers={question.incorrectAnswers}
         question={question.question}
         id={question.id}
         key={question.id}
@@ -32,16 +36,6 @@ export default function Quiz() {
       className='quiz-content-background'
     >
       <div className="quiz-content-container">
-        {/* <div>
-          <h3 className='quiz-question'>How does one say goodbye in Spanish?</h3>
-          <div className="button-container">
-            <button className='answer-button'>Adiós</button>
-            <button className='answer-button'>Hola</button>
-            <button className='answer-button'>Au Revoir</button>
-            <button className='answer-button'>Bon Voyage</button>
-          </div>
-          <hr></hr>
-        </div> */}
         {renderedQuestions}
       </div>
       <span className='blob-2'></span>
