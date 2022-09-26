@@ -130,6 +130,16 @@
   cursor: pointer;
 }
 
+.answer-button-selected {
+  font-family: 'Inter', sans-serif;
+  border-radius: 10px;
+  padding: 9px 15px 9px 15px;
+  background-color: #4D5B9E;
+  border-style: none;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 .answer-button:hover{
   scale: 1.05;
   font-weight: bold;

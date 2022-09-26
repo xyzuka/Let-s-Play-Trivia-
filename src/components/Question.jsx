@@ -23,8 +23,15 @@ export default function Question(props) {
     return ansArr
   }
 
-  console.log(answers)
-  console.log(correctAnswer)
+function selectAnswer(id) {
+  console.log(id)
+  // change the state of the button 
+  setAnswers(prevAnswers => prevAnswers.map(ans => {
+    return ans.key === id ? 
+    {...ans, isSelected: !ans.isSelected} :
+    ans
+  }))
+}
 
 const renderAnswerButtons = answers.map((ans) => {
   return <AnswerButton
@@ -32,6 +39,7 @@ const renderAnswerButtons = answers.map((ans) => {
     isSelected={ans.isSelected}
     key={ans.key}
     correctAnswer={correctAnswer}
+    clickAnswer={() => selectAnswer(ans.key)}
   />
 })
 

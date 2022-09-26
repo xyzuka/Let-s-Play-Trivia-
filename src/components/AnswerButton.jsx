@@ -5,7 +5,8 @@ export default function AnswerButton(props) {
   console.log(props)
   return (
     <button
-      className='answer-button'
+      className={props.isSelected ? 'answer-button-selected' : 'answer-button'}
+      onClick={props.clickAnswer}
     >{props.value}</button>
   )
 }
