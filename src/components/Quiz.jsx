@@ -16,7 +16,8 @@ export default function Quiz() {
   }, [])
 
   // user checks answer by clicking button
-  function checkAnswers(selectedAnswers, correctAnswer, setAnswers) {
+  function checkAnswers(answersState, correctAnswer, setAnswers) {
+    console.log(answersState)
     // if selected answer = correct answer, set isCorrect to true, update score state and UI, set button clicked to green 
 
     // if all isCorrect is false, render the one selected red and update score
@@ -33,7 +34,6 @@ export default function Quiz() {
 
     // look for the answer that is selected
     // check the text content if it matches with the correct answer
-    
   }
 
 
@@ -45,7 +45,7 @@ export default function Quiz() {
         question={question.question}
         id={question.id}
         key={question.id}
-        pullSelectedAnswers={checkAnswers} 
+        pullSelectedAnswers={(e) => checkAnswers(e)} 
       />
     ) 
   })
@@ -60,7 +60,7 @@ export default function Quiz() {
         {renderedQuestions}
         <button 
           className='check-ans-button'
-          onClick={() => checkAnswers()}
+          onClick={checkAnswers}
         >Check answers</button>
         {/* <div className="results-container"> 
           <span className='results-text'>You scored 1/5 correct answers</span>
