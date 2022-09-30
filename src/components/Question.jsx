@@ -16,20 +16,27 @@ export default function Question(props) {
       ansArr.push({
         answer: ans,
         isSelected: false,
+        isCorrect: false,
         key: nanoid()
       })
     })
-
     return ansArr
   }
 
-function selectAnswer(id) {
-  console.log(id)
-  // change the state of the button 
+// passing answers to parent component (Quiz.jsx)
+props.pullSelectedAnswers(answers, correctAnswer, setAnswers)
+
+function selectAnswer(id, answers) {
+  //**  if ID matches set isSelected to true
+  //** if ID does not match set isSelected to false
   setAnswers(prevAnswers => prevAnswers.map(ans => {
     return ans.key === id ? 
-    {...ans, isSelected: !ans.isSelected} :
-    ans
+      {...ans, 
+        isSelected: true
+      } :
+      {...ans, 
+        isSelected: false
+      }
   }))
 }
 
@@ -39,10 +46,9 @@ const renderAnswerButtons = answers.map((ans) => {
     isSelected={ans.isSelected}
     key={ans.key}
     correctAnswer={correctAnswer}
-    clickAnswer={() => selectAnswer(ans.key)}
+    clickAnswer={() => selectAnswer(ans.key, answers)}
   />
 })
-
 
   return (
         <div className='quiz-item-container'>
