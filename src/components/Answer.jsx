@@ -16,10 +16,7 @@ export default function Answer(props) {
 
   return (
     <button
-      // className={props.isSelected ? 'answer-button-selected' : 'answer-button'}
       className={answerButtonClassName}
-      // style={renderResult}
-      // className='answer-button'
       onClick={props.selectAnswer}
     >
       {props.answer}
