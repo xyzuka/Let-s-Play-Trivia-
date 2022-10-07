@@ -136,6 +136,7 @@
   padding: 9px 15px 9px 15px;
   background-color: #4D5B9E;
   border-style: none;
+  color: #D6DBF5;
   margin-bottom: 20px;
   cursor: pointer;
 }
@@ -147,10 +148,40 @@
   box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
 }
 
+.answer-button-correct {
+  font-family: 'Inter', sans-serif;
+  border-radius: 10px;
+  padding: 9px 15px 9px 15px;
+  background-color: #a4d99f;
+  border-style: none;
+  color: black;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.answer-button-incorrect {
+  font-family: 'Inter', sans-serif;
+  border-radius: 10px;
+  padding: 9px 15px 9px 15px;
+  background-color: #f38989;
+  border-style: none;
+  color: black;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 hr {
   color: #DBDEF0;
   margin: 0;
   width: 80%;
+}
+
+.quiz-header {
+  font-family: 'Karla', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 .check-ans-button,
@@ -185,4 +216,8 @@ hr {
 
 .results-text {
   font-family: 'Karla', sans-serif;
+}
+
+.hide {
+  display: none;
 }
