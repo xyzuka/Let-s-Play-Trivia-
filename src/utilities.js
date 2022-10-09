@@ -21,17 +21,7 @@ function formatAnswers(ansArr, correctAns) {
   return arrayShuffle(formattedAnswer);
 }
 
-// shuffling answers and returning it back
-// function shuffleAnswers(answers) {
-//   console.log(answers);
-//   const shuffledAnswerArr = arrayShuffle(answers);
-//   console.log(shuffledAnswerArr);
-//   return shuffledAnswerArr;
-// }
-
 function formatQuizItems(quizData) {
-  // console.log(quizData);
-
   return quizData.map((quizItem) => {
     const answers = [...quizItem.incorrectAnswers, quizItem.correctAnswer];
 

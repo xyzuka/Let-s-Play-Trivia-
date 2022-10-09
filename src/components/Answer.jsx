@@ -2,8 +2,6 @@ import React from 'react';
 import '../styles/quiz.css';
 
 export default function Answer(props) {
-  console.log(props);
-
   let answerButtonClassName = 'answer-button';
 
   if (props.isSelected) answerButtonClassName = 'answer-button-selected';

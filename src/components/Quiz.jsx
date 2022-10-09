@@ -3,18 +3,22 @@ import '../styles/quiz.css';
 import { formatQuizItems } from '../utilities.js';
 import Question from './Question';
 import Answer from './Answer';
+import Confetti from 'react-confetti'
 
 export default function Quiz() {
   const [triviaData, setTriviaData] = React.useState([]);
   const [score, setScore] = React.useState();
   const [restartGame, setRestartGame] = React.useState();
   const [answersChecked, setAnswersChecked] = React.useState();
+  const [confetti, setConfetti] = React.useState();
+
+  const winningScore = 5
 
   function initGame() {
     fetch('https://the-trivia-api.com/api/questions')
       .then((res) => res.json())
       .then((data) => {
-        const firstFiveQuestions = data.splice(0, 5);
+        const firstFiveQuestions = data.splice(0, winningScore);
         const quizData = formatQuizItems(firstFiveQuestions);
 
         // Initializing quiz data and game state
@@ -22,6 +26,7 @@ export default function Quiz() {
         setScore(0);
         setRestartGame(false);
         setAnswersChecked(false);
+        setConfetti(false)
       });
   }
 
@@ -29,7 +34,9 @@ export default function Quiz() {
     initGame()
   }, []);
 
-  // console.log(triviaData)
+  React.useEffect(() => {
+    displayConfetti()
+  }, [score])
 
   function selectAnswer(quizId, answerId) {
     if (answersChecked) return;
@@ -58,12 +65,10 @@ export default function Quiz() {
   }
 
   function checkAnswers() {
-    // console.log('checking answers...')
     // 1. check if all question's answer is selected - return a boolean to be used as a condition
     const areAllAnswersSelected = triviaData.every((questionItem) => {
       return questionItem.answers.some((ans) => ans.isSelected);
     });
-    // console.log(areAllAnswersSelected)
 
     // 2. If all the answers have been selected, map through the data array to scan through the question items and check which answers are selected
     // use a state to track if the check answers button is checked
@@ -78,26 +83,26 @@ export default function Quiz() {
 
       // adding score
       triviaData.forEach((questionItem) => {
-        // console.log(questionItem)
         questionItem.answers.forEach((answerItem) => {
           if (answerItem.isSelected && answerItem.isCorrect) {
-            return setScore((prevScore) => prevScore + 1);
+            setScore((prevScore) => prevScore + 1);
           }
         });
       });
     }
   }
 
-  console.log(triviaData);
-  console.log(score);
+  function displayConfetti() {
+    if (score === winningScore) {
+      return setConfetti((prevConfetti) => !prevConfetti)   
+    }
+  }
 
   function rebootGame() {
-    console.log('rebooting game...')
     initGame()
   }
 
   const renderedQuestions = triviaData.map((questionItem) => {
-    // console.log(questionItem)
     return (
       <div className="quiz-item-container" key={questionItem.id}>
         <Question key={questionItem.id} question={questionItem.question} />
@@ -122,20 +127,22 @@ export default function Quiz() {
 
   return (
     <div className="quiz-content-background">
+      {confetti && <Confetti />}
       <div className="quiz-content-container">
-        <h3 className='quiz-header'>Let's play Trivia!</h3>
         {renderedQuestions}
 
-        <button
-          className={!answersChecked ? 'check-ans-button' : 'hide'}
-          onClick={() => checkAnswers()}
-        >
-          Check answers
-        </button>
+        <div className="check-answer-button-container">
+          <button
+            className={!answersChecked ? 'check-ans-button' : 'hide'}
+            onClick={() => checkAnswers()}
+          >
+            Check answers
+          </button>
+        </div>
 
         <div className={!answersChecked ? 'hide' : 'results-container'}>
           <span className="results-text">
-            You scored {score}/5 correct answers
+            {confetti ? 'Congratulations! You got a perfect score!' : `You scored ${score}/${winningScore} correct answers`}
           </span>
           <button 
             className="play-again-button"
