@@ -13,7 +13,7 @@
 
 ## Acknowledgments
 
-This project was created as a capstone project for learning the Fundamentals of React.
+This project was created as a first solo capstone project for learning the Fundamentals of React.
 
 - [Learn React for Free with Bob Ziroll](https://scrimba.com/learn/learnreact)
 
@@ -27,4 +27,5 @@ Questions in the trivia are pulled from The Trivia API
 - Passing props via Components
 - Using React.useEffect to keep track of state
 - Dynamic rendering with conditional formatting
+- Animating CSS objects for a dynamic web app appearance
 - Storing API data within state and manipulating data based off user interaction
